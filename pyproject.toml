@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "traffic-light-optimisation"
+version = "1.0.0"
+description = "Real-time computer vision pipeline that adapts traffic signal timings to lane queues"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "opencv-python-headless>=4.9", "pyyaml>=6"]
+
+[project.optional-dependencies]
+yolo = ["ultralytics>=8.3"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+traffic-lights = "traffic_lights.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

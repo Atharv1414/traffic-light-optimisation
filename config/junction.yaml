@@ -1,0 +1,18 @@
+# One four-arm junction, two lanes per arm, two signal phases.
+fixed_green_s: 30        # green per phase in fixed mode
+min_green_s: 7           # safety minimum: never cut below this
+max_green_s: 55          # no arm waits forever
+amber_s: 3
+all_red_s: 2
+saturation_flow: 0.5     # vehicles per second per lane once moving
+startup_lost_s: 2        # time before a queue starts to move
+gap_out_s: 2             # adaptive modes: end green this long after the queue clears
+stale_after_s: 3         # no detections for this long -> fixed-time fallback
+
+# Highest priority rule that matches wins. A rule must hold for hold_s before the mode changes.
+# Metrics: total_queue, max_queue, imbalance (0-1), seconds_since_detection
+rules:
+  - {name: camera-stale, metric: seconds_since_detection, op: ">", threshold: 3, mode: fixed, priority: 100, hold_s: 0}
+  - {name: congested, metric: total_queue, op: ">=", threshold: 40, mode: peak, priority: 50, hold_s: 5}
+  - {name: quiet, metric: total_queue, op: "<=", threshold: 2, mode: quiet, priority: 40, hold_s: 10}
+default_mode: adaptive
