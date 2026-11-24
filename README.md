@@ -1,5 +1,7 @@
 # 🚦 Traffic Light Optimisation System
 
+[![tests](https://github.com/Atharv1414/traffic-light-optimisation/actions/workflows/tests.yml/badge.svg)](https://github.com/Atharv1414/traffic-light-optimisation/actions/workflows/tests.yml)
+
 A real-time computer vision pipeline that counts queueing vehicles per lane with YOLOv8 and adjusts signal timings to match.
 
 **Role focus:** AI Engineer · **Stack:** Python, YOLOv8 (Ultralytics), OpenCV, NumPy, YAML rule engine, pytest
