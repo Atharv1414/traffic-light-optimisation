@@ -4,6 +4,10 @@ A real-time computer vision pipeline that counts queueing vehicles per lane with
 
 **Role focus:** AI Engineer · **Stack:** Python, YOLOv8 (Ultralytics), OpenCV, NumPy, YAML rule engine, pytest
 
+![Fixed and adaptive signals side by side on identical simulated traffic](docs/demo.gif)
+
+Identical simulated traffic (saturated-uneven scenario, seed 0, minutes 5 to 7.5). On the right, every simulated second YOLOv8 counts the queues in a drawn frame and the controller acts on those counts. Noise and brightness are evened out for display only. Recreate it with `python scripts/make_demo.py` after training.
+
 ```mermaid
 flowchart LR
   C[Camera ingestion thread] --> B[Latest-frame buffer] --> D[Detection engine: YOLOv8 + lane polygons]
